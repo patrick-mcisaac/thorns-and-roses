@@ -4,6 +4,7 @@ import { Nurseries } from "../components/nurseries/Nurseries"
 import { NurseriesProvider } from "../components/nurseries/NurseriesProvider"
 import { FlowersProvider } from "../components/flowers/FlowersProvider"
 import { DistributorsProvider } from "../components/distributors/DistributorsProvider"
+import { Distributors } from "../components/distributors/Distributors"
 
 export const ApplicationViews = () => {
   return (
@@ -26,7 +27,7 @@ export const ApplicationViews = () => {
         >
           <Route index element={<h1>Home Page</h1>} />
           <Route path="nurseries" element={<Nurseries />} />
-          <Route path="distributors" element={<h1>Distributors Page</h1>} />
+          <Route path="distributors" element={<Distributors />} />
           <Route path="retailers" element={<h1>Retailers Page</h1>} />
         </Route>
       </Routes>

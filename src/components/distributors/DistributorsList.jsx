@@ -1,27 +1,30 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { DistributorsContext } from "./DistributorsProvider"
+import { DistributorsFlowers } from "./DistributorsFlowers"
 
-export const DistributorsList = ({ id }) => {
+export const DistributorsList = () => {
   const { distributors, getDistributors } = useContext(DistributorsContext)
-  const [filteredDistributors, setFilteredDistributors] = useState([])
 
   useEffect(() => {
     getDistributors()
   }, [])
 
-  useEffect(() => {
-    const checkDistributors = distributors.filter(d => d.nurseryId === id)
-    setFilteredDistributors(checkDistributors)
-  }, [distributors])
-
   return (
-    <section>
-      <h2 className="mb-[.5rem] text-xl font-semibold">Distributors</h2>
-      <ul>
-        {filteredDistributors.map(f => (
-          <li key={f.id}>{f.distributor.name}</li>
-        ))}
-      </ul>
-    </section>
+    <div className="flex flex-wrap items-start justify-around gap-10">
+      {distributors.map(d => {
+        return (
+          <section
+            className="flex h-[20rem] w-[30rem] flex-col items-center justify-start rounded-xl border-1 p-[2rem]"
+            key={d.id}
+          >
+            <h2 className="mb-[2rem] text-2xl">{d.distributor.name}</h2>
+            <DistributorsFlowers
+              id={d.distributor.id}
+              distributors={distributors}
+            />
+          </section>
+        )
+      })}
+    </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react"
 import { NurseriesContext } from "./NurseriesProvider"
-import { FlowersList } from "../flowers/FlowersList"
-import { DistributorsList } from "../distributors/DistributorsList"
+import { NurseryDistributorList } from "./NurseryDistributor"
+import { NurseryFlowersList } from "./NurseryFlowersList"
 
 export const NurseriesList = () => {
   const { nurseries, getNurseries } = useContext(NurseriesContext)
@@ -20,8 +20,8 @@ export const NurseriesList = () => {
           >
             <h2 className="mb-[2rem] text-2xl">{n.name}</h2>
             <div className="flex w-[100%] justify-between">
-              <FlowersList id={n.id} />
-              <DistributorsList id={n.id} />
+              <NurseryFlowersList id={n.id} />
+              <NurseryDistributorList id={n.id} />
             </div>
           </section>
         )
