@@ -4,5 +4,6 @@
   "experimentalTernaries": true,
   "arrowParens": "avoid",
   "trailingComma": "none",
-  "semi": false
+  "semi": false,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
