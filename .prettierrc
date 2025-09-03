@@ -1,0 +1,8 @@
+{
+  "tabWidth": 2,
+  "bracketSpacing": true,
+  "experimentalTernaries": true,
+  "arrowParens": "avoid",
+  "trailingComma": "none",
+  "semi": false
+}
