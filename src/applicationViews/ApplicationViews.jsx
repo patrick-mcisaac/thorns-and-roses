@@ -5,6 +5,7 @@ import { NurseriesProvider } from "../components/nurseries/NurseriesProvider"
 import { FlowersProvider } from "../components/flowers/FlowersProvider"
 import { DistributorsProvider } from "../components/distributors/DistributorsProvider"
 import { Distributors } from "../components/distributors/Distributors"
+import { RetailersProvider } from "../components/retailers/RetailersProvider"
 
 export const ApplicationViews = () => {
   return (
@@ -15,13 +16,15 @@ export const ApplicationViews = () => {
           element={
             <>
               <NavBar />
-              <DistributorsProvider>
-                <FlowersProvider>
-                  <NurseriesProvider>
-                    <Outlet />
-                  </NurseriesProvider>
-                </FlowersProvider>
-              </DistributorsProvider>
+              <RetailersProvider>
+                <DistributorsProvider>
+                  <FlowersProvider>
+                    <NurseriesProvider>
+                      <Outlet />
+                    </NurseriesProvider>
+                  </FlowersProvider>
+                </DistributorsProvider>
+              </RetailersProvider>
             </>
           }
         >

@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react"
 import { DistributorsContext } from "./DistributorsProvider"
 import { DistributorsFlowers } from "./DistributorsFlowers"
+import { DistributorsRetailers } from "./DistributorsRetailers"
 
 export const DistributorsList = () => {
   const { distributors, getDistributors } = useContext(DistributorsContext)
@@ -18,10 +19,13 @@ export const DistributorsList = () => {
             key={d.id}
           >
             <h2 className="mb-[2rem] text-2xl">{d.distributor.name}</h2>
-            <DistributorsFlowers
-              id={d.distributor.id}
-              distributors={distributors}
-            />
+            <div className="flex w-[100%] justify-between">
+              <DistributorsFlowers
+                id={d.distributor.id}
+                distributors={distributors}
+              />
+              <DistributorsRetailers id={d.distributor.id} />
+            </div>
           </section>
         )
       })}
