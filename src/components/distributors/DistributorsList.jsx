@@ -14,7 +14,7 @@ export const DistributorsList = () => {
       {distributors.map(d => {
         return (
           <section
-            className="flex h-[20rem] w-[30rem] flex-col items-center justify-start rounded-xl border-1 p-[2rem]"
+            className="flex h-[32rem] w-[30rem] flex-col items-center justify-start rounded-xl border-1 p-[2rem]"
             key={d.id}
           >
             <h2 className="mb-[2rem] text-2xl">{d.distributor.name}</h2>

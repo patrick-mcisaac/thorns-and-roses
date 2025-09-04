@@ -13,6 +13,7 @@ export const DistributorsFlowers = ({ id, distributors }) => {
   const [filteredNursery, setFilteredNursery] = useState([])
   const [filteredFlowers, setFilteredFlowers] = useState([])
   // filter out duplicates
+  const [flowersFinal, setFlowersFinal] = useState([])
 
   useEffect(() => {
     getFlowers()
@@ -38,12 +39,22 @@ export const DistributorsFlowers = ({ id, distributors }) => {
   }, [flowers, filteredNursery])
 
   // filter out duplicates????
+  useEffect(() => {
+    // filter out flowers species
+    const found = filteredFlowers.reduce((accum, curr) => {
+      if (!accum.find(obj => obj.flower.species === curr.flower.species)) {
+        accum.push(curr)
+      }
+      return accum
+    }, [])
+    setFlowersFinal(found)
+  }, [filteredFlowers])
 
   return (
     <section>
       <h2 className="mb-[.5rem] text-xl font-semibold">Flowers</h2>
       <ul>
-        {filteredFlowers.map(f => (
+        {flowersFinal.map(f => (
           <li key={f.id}>{f.flower.species}</li>
         ))}
       </ul>
