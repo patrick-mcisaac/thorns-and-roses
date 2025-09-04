@@ -13,7 +13,7 @@ export const RetailersList = () => {
         <div className="flex flex-wrap items-start justify-around gap-10">
             {retailers.map(r => (
                 <section
-                    className="flex h-[20rem] w-[30rem] flex-col items-center justify-start rounded-xl border-1 p-[2rem]"
+                    className="flex h-[36rem] w-[30rem] flex-col items-center justify-start rounded-xl border-1 p-[2rem]"
                     key={r.id}
                 >
                     <h2 className="text-2xl font-semibold">{r.name}</h2>
