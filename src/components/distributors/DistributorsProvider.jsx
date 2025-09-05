@@ -4,6 +4,7 @@ export const DistributorsContext = createContext()
 
 export const DistributorsProvider = props => {
     const [distributors, setDistributors] = useState([])
+    const [embedDistributors, setEmbedDistributors] = useState([])
 
     const getDistributors = () => {
         fetch(
@@ -19,13 +20,23 @@ export const DistributorsProvider = props => {
         ).then(res => res.json())
     }
 
+    const getEmbedDistributors = () => {
+        fetch(
+            `http://localhost:8088/distributors?_embed=nurseryDistributorBridge&_embed=retailers`
+        )
+            .then(res => res.json())
+            .then(setEmbedDistributors)
+    }
+
     return (
         <DistributorsContext.Provider
             value={{
                 distributors,
                 setDistributors,
                 getDistributors,
-                getDistributorsById
+                getDistributorsById,
+                getEmbedDistributors,
+                embedDistributors
             }}
         >
             {props.children}

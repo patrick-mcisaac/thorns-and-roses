@@ -11,6 +11,7 @@ import { Register } from "../components/auth/Register"
 import { UserProvider } from "../components/auth/UserProvider"
 import { Login } from "../components/auth/Login"
 import { ShoppingCartProvider } from "../components/shoppingCart/ShoppingCartProvider"
+import { ShoppingCart } from "../components/shoppingCart/ShoppingCart"
 
 export const ApplicationViews = () => {
     return (
@@ -41,8 +42,7 @@ export const ApplicationViews = () => {
                     <Route path="nurseries" element={<Nurseries />} />
                     <Route path="distributors" element={<Distributors />} />
                     <Route path="retailers" element={<Retailers />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="login" element={<Login />} />
+                    <Route path="cart" element={<ShoppingCart />} />
                 </Route>
             </Routes>
         </>
