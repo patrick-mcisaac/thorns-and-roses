@@ -9,11 +9,11 @@ export const RetailersProvider = props => {
 
     const getRetailers = () => {
         // get all retailers
-        fetch(`http://localhost:8088/retailers`)
+        fetch(`http://localhost:8088/retailers?_expand=distributor`)
             .then(res => res.json())
             .then(setRetailers)
     }
-
+    // TODO: i can get rid of this if i just use propdrillsc
     const getRetailerById = id => {
         // gets one retailer and distributor for them
         return fetch(
