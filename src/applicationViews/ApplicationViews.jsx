@@ -7,6 +7,8 @@ import { DistributorsProvider } from "../components/distributors/DistributorsPro
 import { Distributors } from "../components/distributors/Distributors"
 import { RetailersProvider } from "../components/retailers/RetailersProvider"
 import { Retailers } from "../components/retailers/Retailers"
+import { Register } from "../components/auth/Register"
+import { UserProvider } from "../components/auth/UserProvider"
 
 export const ApplicationViews = () => {
     return (
@@ -17,15 +19,17 @@ export const ApplicationViews = () => {
                     element={
                         <>
                             <NavBar />
-                            <RetailersProvider>
-                                <DistributorsProvider>
-                                    <FlowersProvider>
-                                        <NurseriesProvider>
-                                            <Outlet />
-                                        </NurseriesProvider>
-                                    </FlowersProvider>
-                                </DistributorsProvider>
-                            </RetailersProvider>
+                            <UserProvider>
+                                <RetailersProvider>
+                                    <DistributorsProvider>
+                                        <FlowersProvider>
+                                            <NurseriesProvider>
+                                                <Outlet />
+                                            </NurseriesProvider>
+                                        </FlowersProvider>
+                                    </DistributorsProvider>
+                                </RetailersProvider>
+                            </UserProvider>
                         </>
                     }
                 >
@@ -33,6 +37,7 @@ export const ApplicationViews = () => {
                     <Route path="nurseries" element={<Nurseries />} />
                     <Route path="distributors" element={<Distributors />} />
                     <Route path="retailers" element={<Retailers />} />
+                    <Route path="register" element={<Register />} />
                 </Route>
             </Routes>
         </>
