@@ -3,13 +3,13 @@ import { createContext, useState } from "react"
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState({})
+    const [users, setUsers] = useState([])
 
     // get users
-    const getUser = id => {
-        fetch(`http://localhost:8088/users/${id}`)
+    const getUsers = () => {
+        fetch(`http://localhost:8088/users`)
             .then(res => res.json())
-            .then(setUser)
+            .then(setUsers)
     }
 
     const addUser = data => {
@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, setUser, getUser, addUser }}>
+        <UserContext.Provider value={{ users, setUsers, getUsers, addUser }}>
             {children}
         </UserContext.Provider>
     )
