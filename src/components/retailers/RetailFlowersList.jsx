@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from "react"
 import { FlowersContext } from "../flowers/FlowersProvider"
 
-import { NurseriesContext } from "../nurseries/NurseriesProvider"
-import { RetailersContext } from "./RetailersProvider"
 import { DistributorsContext } from "../distributors/DistributorsProvider"
+import { ShoppingCartContext } from "../shoppingCart/ShoppingCartProvider"
+import { UserContext } from "../auth/UserProvider"
 
 export const RetailFlowersList = ({ retailer }) => {
-    // TODO:replace retail state with the prop
-
     const [distributorNurseries, setDistributorNurseries] = useState([])
     const [filteredFlowers, setFilteredFlowers] = useState([])
 
     // need all flowers
     const { flowers, getFlowers } = useContext(FlowersContext)
     const { getDistributorsById } = useContext(DistributorsContext)
+    const { addItemToCart } = useContext(ShoppingCartContext)
+    const { currentUser } = useContext(UserContext)
 
     // need to get the price of flowers with both markups
 
@@ -50,16 +50,6 @@ export const RetailFlowersList = ({ retailer }) => {
         setFilteredFlowers(reducedFound)
     }, [distributorNurseries, flowers])
 
-    /*  TODO:
-   get price of flower 
-   filteredFlower.price
-
-   distributor.distributor.markup
-
-   retailer.markup
-
-   */
-
     return (
         <section className="flex flex-col items-center justify-start">
             <h2 className="mb-[.5rem] text-xl font-semibold">Flowers</h2>
@@ -79,6 +69,21 @@ export const RetailFlowersList = ({ retailer }) => {
                                 style: "currency",
                                 currency: "USD"
                             })}
+                        </li>
+                        <li>
+                            <button
+                                onClick={() => {
+                                    const item = {
+                                        customerId: currentUser,
+                                        retailerId: retailer.id,
+                                        flowerId: flower.id
+                                    }
+
+                                    addItemToCart(item)
+                                }}
+                            >
+                                Purchase
+                            </button>
                         </li>
                     </div>
                 ))}

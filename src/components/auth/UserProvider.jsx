@@ -1,9 +1,10 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
     const [users, setUsers] = useState([])
+    const [currentUser, setCurrentUser] = useState({})
 
     // get users
     const getUsers = () => {
@@ -21,9 +22,16 @@ export const UserProvider = ({ children }) => {
             body: JSON.stringify(data)
         })
     }
+    useEffect(() => {
+        const localUser = localStorage.getItem("currentUserId")
+        const userObject = JSON.parse(localUser)
+        setCurrentUser(userObject)
+    }, [])
 
     return (
-        <UserContext.Provider value={{ users, setUsers, getUsers, addUser }}>
+        <UserContext.Provider
+            value={{ currentUser, users, setUsers, getUsers, addUser }}
+        >
             {children}
         </UserContext.Provider>
     )

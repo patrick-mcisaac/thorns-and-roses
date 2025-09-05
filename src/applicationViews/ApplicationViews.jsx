@@ -10,6 +10,7 @@ import { Retailers } from "../components/retailers/Retailers"
 import { Register } from "../components/auth/Register"
 import { UserProvider } from "../components/auth/UserProvider"
 import { Login } from "../components/auth/Login"
+import { ShoppingCartProvider } from "../components/shoppingCart/ShoppingCartProvider"
 
 export const ApplicationViews = () => {
     return (
@@ -21,15 +22,17 @@ export const ApplicationViews = () => {
                         <>
                             <NavBar />
                             <UserProvider>
-                                <RetailersProvider>
-                                    <DistributorsProvider>
-                                        <FlowersProvider>
-                                            <NurseriesProvider>
-                                                <Outlet />
-                                            </NurseriesProvider>
-                                        </FlowersProvider>
-                                    </DistributorsProvider>
-                                </RetailersProvider>
+                                <ShoppingCartProvider>
+                                    <RetailersProvider>
+                                        <DistributorsProvider>
+                                            <FlowersProvider>
+                                                <NurseriesProvider>
+                                                    <Outlet />
+                                                </NurseriesProvider>
+                                            </FlowersProvider>
+                                        </DistributorsProvider>
+                                    </RetailersProvider>
+                                </ShoppingCartProvider>
                             </UserProvider>
                         </>
                     }
