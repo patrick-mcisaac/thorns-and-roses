@@ -76,7 +76,7 @@ export const RetailFlowersList = ({ retailer }) => {
                                     const item = {
                                         customerId: currentUser,
                                         retailerId: retailer.id,
-                                        flowerId: flower.id
+                                        flowerId: flower.flower.id
                                     }
 
                                     addItemToCart(item)

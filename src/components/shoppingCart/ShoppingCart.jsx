@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from "react"
 import { ShoppingCartContext } from "./ShoppingCartProvider"
 import { UserContext } from "../auth/UserProvider"
 import { FlowersContext } from "../flowers/FlowersProvider"
-import { DistributorsContext } from "../distributors/DistributorsProvider"
+import {
+    DistributorsContext,
+    DistributorsProvider
+} from "../distributors/DistributorsProvider"
 
 export const ShoppingCart = () => {
     // i have retailer id, flower id, and customer id from cart items
@@ -46,7 +49,7 @@ export const ShoppingCart = () => {
     // ue to filter so there is only one of each for the table data
     useEffect(() => {
         const reducedItems = myItems.reduce((acc, cur) => {
-            const found = acc.find(a => a.flower.id === cur.flower.id)
+            const found = acc.find(a => a.flower?.id === cur.flower?.id)
             if (!found) {
                 acc.push(cur)
             }
@@ -74,37 +77,54 @@ export const ShoppingCart = () => {
 
     return (
         <div>
-            <table>
+            <table className="mt-[8rem] flex flex-col items-center">
                 <thead>
                     <tr>
-                        <th>Flower</th>
-                        <th>Quantity</th>
-                        <th>Cost</th>
+                        <th className="w-[12rem] border-1 p-2">Flower</th>
+                        <th className="w-[7rem] border-1 p-2">Quantity</th>
+                        <th className="w-[6rem] border-1 p-2">Cost</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="flex flex-col">
                     {filteredItems.map(item => {
+                        // find og flower price
+                        const flower = flowerPrices.find(
+                            f => f.flowerId === item.flowerId
+                        )
+
+                        let price = flower?.price
+
+                        // find distributor price
+                        myDistributors.find(d => {
+                            for (const retailer of d.retailers) {
+                                if (retailer.id === item.retailerId) {
+                                    price *= retailer.markup * d.markup
+                                }
+                            }
+                        })
+
                         return (
-                            <tr key={item.id}>
-                                <td>{item.flower.species}</td>
-                                <td>
+                            <tr
+                                className="flex items-center justify-center"
+                                key={item.id}
+                            >
+                                <td className="w-[12rem] border-1 p-2">
+                                    {item.flower?.species}
+                                </td>
+                                <td className="w-[7rem] border-1 p-2 text-center">
                                     {
                                         myItems.filter(
-                                            i => i.flower.id === item.flower.id
+                                            i =>
+                                                i.flower?.id === item.flower?.id
                                         ).length
                                     }
                                 </td>
-                                {/* 
-                                
-                                {(
-                                flower.price *
-                                distributorNurseries[0].distributor.markup *
-                                retailer?.markup
-                            ).toLocaleString("en-US", {
-                                style: "currency",
-                                currency: "USD"
-                            })}
-                            */}
+                                <td className="w-[6rem] border-1 p-2 text-right">
+                                    {price?.toLocaleString("en-US", {
+                                        style: "currency",
+                                        currency: "USD"
+                                    })}
+                                </td>
                             </tr>
                         )
                     })}
