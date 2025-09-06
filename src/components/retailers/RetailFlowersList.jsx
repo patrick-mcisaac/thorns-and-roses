@@ -12,7 +12,8 @@ export const RetailFlowersList = ({ retailer }) => {
     // need all flowers
     const { flowers, getFlowers } = useContext(FlowersContext)
     const { getDistributorsById } = useContext(DistributorsContext)
-    const { addItemToCart } = useContext(ShoppingCartContext)
+    const { addItemToCart, getCartItemsByCustomerId, myItems } =
+        useContext(ShoppingCartContext)
     const { currentUser } = useContext(UserContext)
 
     // need to get the price of flowers with both markups
@@ -79,7 +80,9 @@ export const RetailFlowersList = ({ retailer }) => {
                                         flowerId: flower.flower.id
                                     }
 
-                                    addItemToCart(item)
+                                    addItemToCart(item).then(res => {
+                                        getCartItemsByCustomerId(currentUser)
+                                    })
                                 }}
                             >
                                 Purchase

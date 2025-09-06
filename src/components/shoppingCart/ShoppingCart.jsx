@@ -77,7 +77,7 @@ export const ShoppingCart = () => {
 
     return (
         <div>
-            <table className="mt-[8rem] flex flex-col items-center">
+            <table className="mt-[4rem] flex flex-col items-center">
                 <thead>
                     <tr>
                         <th className="w-[12rem] border-1 p-2">Flower</th>
@@ -108,10 +108,10 @@ export const ShoppingCart = () => {
                                 className="flex items-center justify-center"
                                 key={item.id}
                             >
-                                <td className="w-[12rem] border-1 p-2">
+                                <td className="flex h-[4rem] w-[12rem] items-center border-1 p-2">
                                     {item.flower?.species}
                                 </td>
-                                <td className="w-[7rem] border-1 p-2 text-center">
+                                <td className="flex h-[4rem] w-[7rem] items-center justify-center border-1 p-2">
                                     {
                                         myItems.filter(
                                             i =>
@@ -119,7 +119,7 @@ export const ShoppingCart = () => {
                                         ).length
                                     }
                                 </td>
-                                <td className="w-[6rem] border-1 p-2 text-right">
+                                <td className="flex h-[4rem] w-[6rem] items-center justify-end border-1 p-2">
                                     {price?.toLocaleString("en-US", {
                                         style: "currency",
                                         currency: "USD"

@@ -21,13 +21,13 @@ export const ApplicationViews = () => {
                     path="/"
                     element={
                         <>
-                            <NavBar />
                             <UserProvider>
                                 <ShoppingCartProvider>
                                     <RetailersProvider>
                                         <DistributorsProvider>
                                             <FlowersProvider>
                                                 <NurseriesProvider>
+                                                    <NavBar />
                                                     <Outlet />
                                                 </NurseriesProvider>
                                             </FlowersProvider>

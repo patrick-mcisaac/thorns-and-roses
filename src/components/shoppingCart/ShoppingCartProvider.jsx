@@ -6,7 +6,7 @@ export const ShoppingCartProvider = ({ children }) => {
     const [myItems, setMyItems] = useState([])
 
     const addItemToCart = item => {
-        fetch(`http://localhost:8088/shoppingCarts`, {
+        return fetch(`http://localhost:8088/shoppingCarts`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
